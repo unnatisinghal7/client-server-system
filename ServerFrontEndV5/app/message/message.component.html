@@ -1,0 +1,81 @@
+<!-- <div class="container-fluid" *ngIf=popup>
+<p>hi</p>
+<button (click)="closePopup()">Close</button>
+</div> -->
+<button type="submit" class="btn btn-info" (click)="back()">Back</button>
+<div *ngIf="registeredClients.length==0" class="container-fluid"
+  style="margin-top:2%">
+  <div class="row">
+      <div class="col-md-4"></div>
+      <span class="badge badge-danger col-md-4">No Clients are Registered</span>
+      <div class="col-md-4"></div>
+    </div>
+</div>
+
+
+<div *ngIf="registeredClients.length!=0" class="container-fluid" style="margin-top:2%">
+  <div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <form [formGroup]="messageForm">
+      <div class="form-group">
+        <label class="form-control" style="font-weight: bold;background-color: #17a2b8; color:white">Select a Mode:</label>
+        <select id="ki"  formControlName="mode" [(ngModel)]="optionValue" value="{{optionValue}}" (change)="emptylist()" class="form-control">
+
+          <option value=""  >SELECT</option>
+          <option value="unicast">Unicast</option>
+          <option value="multicast" >Multicast</option>
+          <option value="broadcast">Broadcast</option>
+        </select>
+      </div>
+      <div *ngIf="optionValue=='unicast'" class="container-fluid form-control" style="background:rgb(25, 31, 37)" > 
+          <label class="form-control" style= "font-weight: bold;background-color: #17a2b8; color:white">Select One Client</label>
+          
+          <p  class="form-control" *ngFor="let r of registeredClients">
+              <input type="radio" (click)="unicastClick(r.ipaddress)" name="x">{{r.ipaddress}}--{{r.description}}</p>  
+
+        <label class="form-control" style= " font-weight: bold;background-color: #17a2b8; color:white">Message:</label>
+        
+        <textarea  class="form-control" formControlName="message" rows="5" cols="53"></textarea>
+        <p class="text-danger" *ngIf="messageForm.controls.message.dirty && messageForm.controls.message.invalid " >
+          <b> Please Enter the Message </b></p>
+        <br>
+
+
+        <button class="btn btn-info" [disabled]="messageForm.controls.message.invalid" type="submit"  (click)="unicastSubmit()">Send Message</button>
+      
+      </div>
+      <div *ngIf="optionValue=='multicast' " class="container-fluid form-control" style="background:rgb(25, 31, 37)">
+        
+          <label class="form-control" style= "font-weight: bold;background-color: #17a2b8; color:white">Select Clients</label>
+        <p *ngFor="let r of registeredClients" class="form-control">
+          <input type="checkbox" (click)="multicastClick(r.ipaddress)">{{r.ipaddress}}--{{r.description}}</p>
+        <br>
+        <label class="form-control" style= "font-weight: bold;background-color: #17a2b8; color:white">Message:</label>
+        
+        <textarea class="form-control" formControlName="message" rows="5" cols="53"></textarea>
+        <p class="text-danger" *ngIf="messageForm.controls.message.dirty && messageForm.controls.message.invalid " >
+          <b> Please Enter the Message </b></p>
+        <br>
+
+        <button type="submit" [disabled]="messageForm.controls.message.invalid " class="btn btn-info" (click)="multicastSubmit()">Send Message</button>
+      </div>
+      <div *ngIf="optionValue=='broadcast'"  class="container-fluid form-control" style="background:rgb(25, 31, 37)">
+
+
+        <label class="form-control" style= "font-weight: bold;background-color: #17a2b8; color:white">Message:</label>
+        
+        <textarea class="form-control" formControlName="message" rows="5" cols="53"></textarea>
+        <p class="text-danger" *ngIf="messageForm.controls.message.dirty && messageForm.controls.message.invalid " >
+          <b> Please Enter the Message </b></p>
+        <br>
+
+        <button type="submit" [disabled]="messageForm.controls.message.invalid " class="btn btn-info" (click)="broadcastSubmit()">Send Message</button>
+      </div>
+    </form>
+  </div>
+    <div class="col-md-4"></div>
+  </div>
+  <br><br><br><br>
+  <a (click)="image()"><img src="/assets/y.ico" style="position: fixed;left:93%;height: 1000px;width:5%;height:10%; bottom: 10px;"></a>
+

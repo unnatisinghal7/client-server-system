@@ -1,0 +1,9 @@
+
+[
+    {"ipaddress": "lochost0","description": "Testing localhost0","appear": "1"},
+    {"ipaddress": "lochost1","description": "Testing localhost1","appear": "0"},
+    {"ipaddress": "lochost2","description": "Testing localhost2","appear": "1"},
+    {"ipaddress": "lochost3","description": "Testing localhost3","appear": "1"},
+    {"ipaddress": "lochost4","description": "Testing localhost4","appear": "1"},
+    {"ipaddress": "lochost5","description": "Testing localhost5","appear": "1"}
+]

@@ -1,0 +1,32 @@
+<div class="container-fluid" style="background-color:rgba(46, 193, 219,0.90);width: 50%;margin-top:5%;text-align: center; border-radius: 10%;" > 
+  <h1 style="padding-top: 20px">EBMS Client</h1><br/>
+  <p></p>
+  <p class="container-fluid form-control" style="background-color: aliceblue"><b>EBMS Client System</b></p>
+  <br/>
+  <div class="alert alert-primary" *ngIf="alert_val && newList.length>anotherList.length" role="alert">
+      <b>You may have new messages,check it out!</b>
+    <!-- <span><img src="assets/close.png" style="width:20px;height:20px;position:absolute;top: -10px;right: -10px;"
+      (click)="alert()"></span> -->
+  </div>
+  
+  <div class="container-fluid form-control" style="background-color: aliceblue" *ngIf="newList.length==0">
+        <p *ngIf="newList.length==0" style="text-align:center;"><b>No messages right now</b></p>
+  </div>
+  <!-- <p *ngIf="newList.length==0" style="text-align:center;"><b>No messages right now</b></p> -->
+  <div  *ngIf="newList.length!=0" style="text-align: center;height:300px;overflow:auto">
+    <table   class="table table-striped" style="background-color: white">            
+      <tr *ngFor="let dt of newList">
+        <td><img src="assets/images.jpg" style="width:20px;height:20px" (click)="deleteMessage(dt)"></td>
+        <td>{{ dt.timearrived.substring(0,10)}}   {{ dt.timearrived.substring(11,19)}}</td>
+         <td style="width: 65%"> {{dt.message}} </td>
+      </tr>
+    </table>
+  </div>
+  <button style="margin-bottom: 20px;margin-top: 20px" class="btn btn-dark"  (click)="logout_func()">Logout</button>
+  
+</div>
+
+
+    
+    
+    

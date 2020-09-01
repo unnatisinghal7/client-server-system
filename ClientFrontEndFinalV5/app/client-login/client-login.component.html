@@ -1,0 +1,46 @@
+<!-- <div class="row">
+  <div class="col-md-5 offset-md-4">
+    <div class="card">
+      <div class="card-header bg-primary text-center">Login for Client</div>
+      <div class="card-body">
+        <form>
+          <div class="form-group">
+            <label><b>Client Id  :</b></label><br>
+            <input type="text" formControlName="clientId" class="form-control">   
+          </div>
+          <div class="form-group">
+            <label><b>Password:</b></label><br>
+            <input type="password" formControlName="password" class="form-control">
+          </div>
+         
+         <div class="form-group">
+            <button class="btn btn-primary form-control" type="submit">Login</button>
+           </div> 
+        </form>    
+      </div>
+      </div>
+      </div>
+      </div>  -->
+     
+     <h2>My Books</h2>
+<table class="table table-primary table-bordered">
+  <thead>
+    <th>Select</th>
+    <th>ipaddress</th>
+    <th>description</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let i of list">
+      <td *ngIf="i.appear==1"><input type="checkbox" value="i" (click)="changeSelect(i.ipaddress)" ></td>
+      <td *ngIf="i.appear==1">{{i.ipaddress}}</td>
+      <td *ngIf="i.appear==1">{{i.description}}</td>
+    </tr>
+  </tbody>
+  
+  </table>
+  <span>
+    <button class="btn btn-primary form-control" (click)="getClient()">Login</button>
+    <!-- <button class="btn btn-primary form-control" (click)="removeClient()">Remove</button> -->
+
+  </span>
+ 

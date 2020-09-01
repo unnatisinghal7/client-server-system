@@ -1,0 +1,7 @@
+.bg{
+    background-image: url("src/assets/j.jpg");
+    height:100%;
+    background-position: center;
+    /* background-repeat: repeat; */
+    background-size: cover;
+}

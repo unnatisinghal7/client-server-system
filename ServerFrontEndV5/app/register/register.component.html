@@ -1,0 +1,87 @@
+
+<button type="submit" class="btn btn-info" (click)="back()">Back</button>
+<div class="container-fluid" style="margin-top:2%">
+  <div class="row">
+    <div class="col-md-4"></div>
+    <button class="btn btn-info col-md-4" style="width:auto" (click)="toggle()"> Register a new Client</button>
+    <div class="col-md-4"></div>
+  </div>
+</div>
+<div class="container-fluid" style="margin-top:2%" *ngIf="flag">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="card bg-info col-md-6 ">
+      <div class="card-header " style="color:white">Register Form</div>
+      <div class="card-body">
+        <form [formGroup]="registerForm">
+          <div class="form-group">
+            <label style="color:white;font-weight: bold">IP Address: </label>
+            <input type="text" formControlName="ipaddress" class="form-control" placeholder="Enter IP address">
+            <span style="margin-top:2%"
+              *ngIf="registerForm.controls.ipaddress.invalid && registerForm.controls.ipaddress.dirty "
+              class="text-danger" style="font-weight: bold">Please provide valid IP
+              address</span>
+          </div>
+          <div class="form-group">
+            <label style="color:white;font-weight: bold">Description:</label>
+            <input type="text" formControlName="description" class="form-control" placeholder="Enter description">
+            <span *ngIf="registerForm.controls.description.invalid && registerForm.controls.description.dirty"
+              class="text-danger" style="font-weight: bold"> Please provide description</span>
+          </div>
+          <button [disabled]="registerForm.invalid" type="submit" class="btn btn-dark"
+            (click)="register()">Register</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid" *ngIf="clientList.length==0" style="margin-top:2%">
+  <div class="row">
+    <div class="col-md-4"></div>
+    <span class="badge badge-danger col-md-4">No Clients are Registered</span>
+    <div class="col-md-4"></div>
+  </div>
+</div>
+<div class="container-fluid" *ngIf="clientList.length!=0" style="text-align: center;margin-top:2%">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <table class="table table-bordered table-striped">
+        <thead class="bg-info">
+          <th>
+            Select
+          </th>
+          <th>
+            Ipaddress
+          </th>
+          <th>
+            Description
+          </th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let client of clientList" style="background-color:rgb(228, 212, 212)">
+            <td><input type="checkbox" (click)="deregister(client.ipaddress)"></td>
+            <td>{{client.ipaddress}}</td>
+            <td>{{client.description}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="container-fluid">
+      <div class="col-md-5"></div>
+      <button type="submit" [disabled]="deregisterclients.length==0" (click)="deregister1()" class="btn btn-dark col-md-2"
+        style="font-weight:bold;font-size:15px">DeRegister</button>
+        <a [routerLink]='["/message"]' style="text-align:center;color:black" >  <button  class="btn btn-dark col-md-2"
+          style="font-weight:bold;font-size:15px">Send Message</button></a>
+      
+      <div class="col-md-5"></div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+    
+   
